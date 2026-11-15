@@ -1,0 +1,13 @@
+html {
+  min-height: 100%;
+  background: #f3e6af;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f3e6af;
+  background-image:
+    radial-gradient(ellipse at 20% 10%, #fff8db80, transparent 65%),
+    repeating-linear-gradient(0deg, #80652c04 0 1px, transparent 1px 4px);
+}
