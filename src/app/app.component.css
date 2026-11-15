@@ -108,16 +108,16 @@
 
 .paper-header { position: relative; z-index: 1; }
 .doodle-sun-one, .doodle-sun-two {
-  background-image: url('/illustrations/sun.svg');
+  background-image: url('../../public/illustrations/sun.svg');
 }
 .doodle-roll-one, .doodle-roll-two, .doodle-roll-three {
-  background-image: url('/illustrations/eggroll.svg');
+  background-image: url('../../public/illustrations/eggroll.svg');
 }
 .doodle-spark-one, .doodle-spark-two, .doodle-spark-three {
-  background-image: url('/illustrations/sparkle.svg');
+  background-image: url('../../public/illustrations/sparkle.svg');
 }
 .doodle-rice-one, .doodle-rice-two {
-  background-image: url('/illustrations/rice.svg');
+  background-image: url('../../public/illustrations/rice.svg');
 }
 @media (max-width: 1000px) {
   .doodle { width: calc(var(--size) * 0.7); height: calc(var(--size) * 0.7); }

@@ -25,3 +25,12 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## GitHub Pages
+
+The workflow in `.github/workflows/deploy.yml` builds and publishes the site on pushes to `master`, or when run manually from Actions.
+
+In repository Settings > Pages > Build and deployment, set Source to GitHub Actions.
+Commit and push the workflow and source changes. The site will be available at https://migotaur.github.io/adobobox/ after the deployment succeeds.
+
+The Pages build uses `npm run build -- --base-href /adobobox/` and uploads only `dist/adobobox/browser`. GitHub Pages serves static files; the Express server is not deployed.
