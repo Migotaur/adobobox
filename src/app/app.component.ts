@@ -1,15 +1,42 @@
 import { afterNextRender, Component, DestroyRef, ElementRef, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Adobo, AdoboboxComponent } from './adobobox/adobobox.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AdoboboxComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'adobobox';
+  // Stable markup for hydration; the browser chooses how many fit the visible area.
+  readonly backgroundDoodles = Array.from({ length: 160 }, (_, index) => [
+    'doodle-sun-one', 'doodle-roll-one', 'doodle-coffee', 'doodle-spark-one',
+    'doodle-leaf', 'doodle-rice-one', 'doodle-planet', 'doodle-cloud',
+    'doodle-spark-two', 'doodle-roll-three', 'doodle-sun-two', 'doodle-spark-three'
+  ][index % 12]);
+  readonly awesomeWebsites: readonly Adobo[] = [
+    { name: 'Neal.fun', icon: 'play', description: 'Playful games and little web experiments.', url: 'https://neal.fun/' },
+    { name: 'Radio Garden', icon: 'radio', description: 'Spin the globe and tune into live radio.', url: 'https://radio.garden/' },
+    { name: 'WindowSwap', icon: 'window', description: 'A little change of scenery, one window at a time.', url: 'https://www.window-swap.com/' }
+  ];
+  readonly educationAdobos: readonly Adobo[] = [
+    { name: 'Word Search Generator', icon: 'book', description: 'Turn your word list into a printable puzzle.' },
+    { name: 'Flashcard Maker', icon: 'book', description: 'Make a quick study deck for any subject.' },
+    { name: 'Color by Code', icon: 'book', description: 'Create a colorful learning activity.' }
+  ];
+  readonly healthAdobos: readonly Adobo[] = [
+    { name: 'Breathing Timer', icon: 'heart', description: 'Set aside a moment to slow down.' },
+    { name: 'Water Tracker', icon: 'heart', description: 'Keep a simple log of your daily drinks.' },
+    { name: 'Stretch Break', icon: 'heart', description: 'A gentle reminder to pause and move.' }
+  ];
+  readonly everydayAdobos: readonly Adobo[] = [
+    { name: 'Unit Converter', icon: 'tools', description: 'Swap between everyday measurements.' },
+    { name: 'QR Code Generator', icon: 'tools', description: 'Turn a link into a scannable code.' },
+    { name: 'Focus Timer', icon: 'tools', description: 'Make room for a focused work session.' }
+  ];
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly destroyRef = inject(DestroyRef);
 
@@ -51,8 +78,12 @@ export class AppComponent {
           layer.style.removeProperty('mask-image');
           layer.style.removeProperty('-webkit-mask-image');
         }
+        // Browser zoom-out increases CSS viewport area, revealing extra artwork.
+        const visibleCount = Math.min(doodles.length, Math.max(12, Math.ceil(bounds.width * bounds.height / 24000)));
         const occupied: { x: number; y: number; size: number }[] = [];
         doodles.forEach((doodle, index) => {
+          doodle.style.visibility = 'hidden';
+          if (index >= visibleCount) return;
           const size = doodle.offsetWidth;
           // A square large enough to contain the artwork at any rotation.
           const footprint = size * Math.SQRT2;
@@ -83,7 +114,7 @@ export class AppComponent {
                   { transform: `translate(0, 0) rotate(${choice.angle}deg) scale(1)`, opacity: 1 }
                 ], {
                   duration: 750,
-                  delay: index * 35,
+                  delay: Math.min(index * 25, 600),
                   easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
                   fill: 'backwards'
                 });

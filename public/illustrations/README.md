@@ -8,3 +8,5 @@ To use a different filename or a PNG/WebP, update its background-image URL in sr
 Image sizes and responsive scaling are in src/app/app.component.css under .doodle. Positions and rotations are randomized in src/app/app.component.ts after rendering, avoiding other doodles. Artwork that cannot fit is hidden.
 CSS background URLs use ../../public/illustrations/<filename>, relative to src/app/app.component.css. Angular bundles these assets and generates paths that work under the GitHub Pages /adobobox/ prefix.
 Add page content inside .page-content in src/app/app.component.html. Routed pages render there too. Doodles automatically fade to about 12% behind this container with soft edges; an empty container leaves the doodles fully visible. The fade updates when the container or background changes size.
+
+Additional black outline designs: coffee.svg, leaf.svg, planet.svg, cloud.svg. The background has a pool of 160 doodles; visibility scales with layer area (roughly one per 24,000 CSS pixels squared), so zooming out reveals more. Design choices are in backgroundDoodles in app.component.ts. Spacing, animations, and content fading still apply.

@@ -1,3 +1,40 @@
+/* Local preview only. Embedding Nasalization requires a licensed webfont. */
+@font-face {
+  font-family: 'Nasalization';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Nasalization'), local('Nasalization Regular'), local('NasalizationRg-Regular');
+}
+@font-face {
+  font-family: 'Oxanium';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../public/fonts/oxanium/oxanium-400.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Oxanium';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../public/fonts/oxanium/oxanium-500.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Oxanium';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../public/fonts/oxanium/oxanium-600.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Oxanium';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../public/fonts/oxanium/oxanium-700.ttf) format('truetype');
+}
+
 html {
   min-height: 100%;
   background: #f3e6af;
@@ -11,3 +48,18 @@ body {
     radial-gradient(ellipse at 20% 10%, #fff8db80, transparent 65%),
     repeating-linear-gradient(0deg, #80652c04 0 1px, transparent 1px 4px);
 }
+.paper-footer {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  padding: 26px 20px 18px;
+  background: #fffbed;
+  color: #493d25;
+  text-align: center;
+  font: 12px/1.6 'Oxanium', 'Segoe UI', sans-serif;
+  clip-path: polygon(0 8px, 3% 3px, 7% 9px, 12% 2px, 18% 7px, 24% 0, 30% 6px, 37% 2px, 44% 8px, 51% 1px, 58% 7px, 65% 3px, 72% 9px, 79% 2px, 86% 7px, 93% 1px, 100% 6px, 100% 100%, 0 100%);
+}
+.paper-footer p { margin: 0; }
+.paper-footer a { color: inherit; text-underline-offset: 3px; }
+.paper-footer a:hover { text-decoration-thickness: 2px; }
+.paper-footer a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }

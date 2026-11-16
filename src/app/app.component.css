@@ -1,5 +1,6 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   font-family: 'Segoe UI', Arial, sans-serif;
   min-height: 100vh;
 }
@@ -7,6 +8,7 @@
 .paper-header {
   position: relative;
   height: min(20vh, 180px);
+  flex-shrink: 0;
   filter: drop-shadow(0 5px 3px #6a4f2426);
   animation: header-drop 500ms ease-in-out both;
 }
@@ -33,19 +35,20 @@
   position: relative;
   height: 88%;
   max-width: 1100px;
-  margin-inline: auto;
+  margin-right: auto;
   padding-inline: clamp(1.25rem, 5vw, 4rem);
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   justify-content: center;
-  gap: min(0.4rem, 1vh);
+  gap: 0.4rem;
   color: #493d25;
 }
 
 .paper-brand {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Nasalization', 'Oxanium', 'Segoe UI', sans-serif;
   font-size: clamp(1.5rem, 5vh, 3rem);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 1;
 }
@@ -123,6 +126,7 @@
   .doodle { width: calc(var(--size) * 0.7); height: calc(var(--size) * 0.7); }
 }
 .page-main {
+  flex: 1;
   position: relative;
   z-index: 1;
   display: flow-root;
@@ -130,7 +134,42 @@
 
 .page-content {
   display: flow-root;
-  max-width: 960px;
+  max-width: 1440px;
   margin: clamp(1.5rem, 5vw, 4rem) auto;
   width: calc(100% - 3rem);
 }
+
+/* Wrapping flex rows keep incomplete rows centered at the same card width. */
+.boxes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.boxes-grid app-adobobox {
+  flex: 0 0 calc((100% - 72px) / 4);
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+  .boxes-grid app-adobobox { flex-basis: calc((100% - 48px) / 3); }
+}
+
+@media (max-width: 900px) {
+  .boxes-grid app-adobobox { flex-basis: calc((100% - 24px) / 2); }
+}
+
+@media (max-width: 600px) {
+  .boxes-grid app-adobobox { flex-basis: 100%; max-width: 460px; }
+}
+
+.doodle-coffee { --size: 82px; background-image: url('../../public/illustrations/coffee.svg'); }
+.doodle-leaf { --size: 72px; background-image: url('../../public/illustrations/leaf.svg'); }
+.doodle-planet { --size: 98px; background-image: url('../../public/illustrations/planet.svg'); }
+.doodle-cloud { --size: 88px; background-image: url('../../public/illustrations/cloud.svg'); }
+
+.paper-brand-row { display: flex; align-items: center; gap: clamp(8px, 1.5vw, 14px); }
+.paper-brand-icon { display: block; flex-shrink: 0; width: clamp(24px, 5vh, 44px); height: clamp(24px, 5vh, 44px); object-fit: contain; }
